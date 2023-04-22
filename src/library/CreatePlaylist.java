@@ -25,11 +25,13 @@ public class CreatePlaylist extends JFrame implements ActionListener
 		JLabel text = new JLabel("Create a new playlist");
 		add(text);
 		text.setFont(new Font("sans-serif",Font.BOLD,44));
+		text.setForeground(Color.WHITE);
 		text.setBounds(180,30,720,60);
 		
 		JLabel entName = new JLabel("Enter name for playlist : ");
 		add(entName);
 		entName.setFont(new Font("sans-serif",Font.ITALIC,22));
+		entName.setForeground(Color.WHITE);
 		entName.setBounds(180,40,400,220);
 		
 		CrtPly = new JTextField();
@@ -55,16 +57,13 @@ public class CreatePlaylist extends JFrame implements ActionListener
 				if( name.equals("") ) {
 					JOptionPane.showMessageDialog(null,"Invalid input");
 				}
+				if (name.contains(" ")) {
+					JOptionPane.showMessageDialog(null,"You cannot add space in playlist name");
+				}
 				else {
-					System.out.println("works");
 					Conn obj = new Conn();	
-					System.out.println("works1");
-
 					String query = "create table "+name+"( songs varchar(20));";
-					System.out.println("works2");
-
 					obj.s.executeUpdate(query);
-					System.out.println("works3");
 					JOptionPane.showMessageDialog(null,"Playlist created");
 				}
 			}
@@ -76,9 +75,12 @@ public class CreatePlaylist extends JFrame implements ActionListener
 	
 	public static void main(String args[])
 	{
-	new CreatePlaylist();	
-	}
-
-	
-	
+		try {
+				new CreatePlaylist();	
+		}
+		catch(Exception e) 
+		{
+		
+		}
+	}	
 }

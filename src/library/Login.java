@@ -3,6 +3,8 @@ package library;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+import java.sql.SQLException;
+
 import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener{
@@ -19,31 +21,37 @@ public class Login extends JFrame implements ActionListener{
 		JLabel text = new JLabel("Welcome to your Music Library");
 		add(text);
 		text.setFont(new Font("sans-serif",Font.BOLD,38));
+		text.setForeground(Color.WHITE);
 		text.setBounds(100, 40, 800, 40);
 		
 		JLabel menu = new JLabel("Would you like to: ");
 		add(menu);
 		menu.setFont(new Font("sans-serif",Font.ITALIC,24));
+		menu.setForeground(Color.WHITE);
 		menu.setBounds(150, 60, 200, 120);		
 
 		JLabel opn = new JLabel("1. Open a playlist ");
 		add(opn);
 		opn.setFont(new Font("sans-serif",Font.ITALIC,24));
+		opn.setForeground(Color.WHITE);
 		opn.setBounds(200, 60, 200, 180);
 		
 		JLabel crt = new JLabel("2. Create a playlist");
 		add(crt);
 		crt.setFont(new Font("sans-serif",Font.ITALIC,24));
+		crt.setForeground(Color.WHITE);
 		crt.setBounds(200, 60, 200, 240);
 		
 		JLabel brws = new JLabel("3. Browse playlists");
 		add(brws);
 		brws.setFont(new Font("sans-serif",Font.ITALIC,24));
+		brws.setForeground(Color.WHITE);
 		brws.setBounds(200, 60, 300, 300);
 
 		JLabel inp = new JLabel("Your Input:");
 		add(inp);
 		inp.setFont(new Font("sans-serif",Font.BOLD,32));
+		inp.setForeground(Color.WHITE);
 		inp.setBounds(150, 60, 200, 430);
 		
 		inputText = new JTextField();
@@ -68,11 +76,14 @@ public class Login extends JFrame implements ActionListener{
 						break;
 			case "2" : 	CreatePlaylist obj1= new CreatePlaylist();
 						break;
-			case "3" :  break;
+//			case "3" : BrowsePlaylist obj2 = new BrowsePlaylist();
+//						break;
+				
 			default  : 	JOptionPane.showMessageDialog(null, "Invalid Input");
 						break;
 			}
 		}
+		
 	}
 			
 			/*
