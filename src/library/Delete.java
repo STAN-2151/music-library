@@ -1,20 +1,20 @@
 package library;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class CreatePlaylist extends JFrame implements ActionListener
-{
+
+public class Delete extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JButton sub;
-	JTextField CrtPly;
 	JRadioButton yes;
-	CreatePlaylist()
+	JButton sub;
+	JTextField DltPly;
+	
+	Delete()
 	{
 		setSize(900,600);
 		setVisible(true);
@@ -23,21 +23,21 @@ public class CreatePlaylist extends JFrame implements ActionListener
 		getContentPane().setBackground(Color.BLACK);
 		setLayout(null);
 				
-		JLabel text = new JLabel("Create a new playlist");
+		JLabel text = new JLabel("Delete Existing Playlist");
 		add(text);
 		text.setFont(new Font("sans-serif",Font.BOLD,44));
 		text.setForeground(Color.WHITE);
 		text.setBounds(180,30,720,60);
 		
-		JLabel entName = new JLabel("Enter name for playlist : ");
+		JLabel entName = new JLabel("Enter name of playlist : ");
 		add(entName);
 		entName.setFont(new Font("sans-serif",Font.ITALIC,22));
 		entName.setForeground(Color.WHITE);
 		entName.setBounds(180,40,400,220);
 		
-		CrtPly = new JTextField();
-		CrtPly.setBounds(430, 140, 200, 30);
-		add(CrtPly);
+		DltPly = new JTextField();
+		DltPly.setBounds(430, 140, 200, 30);
+		add(DltPly);
 		
 		sub = new JButton("SUBMIT");
 		sub.setBackground(Color.BLACK);
@@ -63,14 +63,14 @@ public class CreatePlaylist extends JFrame implements ActionListener
 		
 		
 	}
-	
-	public void actionPerformed(ActionEvent ae) 
-	{
-		if(ae.getSource() == sub) {
 
+	
+	
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource() == sub) {
 			try {
 
-			String name = (String) CrtPly.getText();
+			String name = (String) DltPly.getText();
 
 				if( name.equals("") ) {
 					JOptionPane.showMessageDialog(null,"Invalid input");
@@ -80,9 +80,9 @@ public class CreatePlaylist extends JFrame implements ActionListener
 				}
 				else {
 					Conn obj = new Conn();	
-					String query = "create table "+name+"( songs varchar(20));";
+					String query = "drop table "+name;
 					obj.s.executeUpdate(query);
-					JOptionPane.showMessageDialog(null,"Playlist created");
+					JOptionPane.showMessageDialog(null,"Playlist removed");
 				}
 			}
 			catch(Exception e) {
@@ -97,11 +97,12 @@ public class CreatePlaylist extends JFrame implements ActionListener
 	public static void main(String args[])
 	{
 		try {
-				new CreatePlaylist();	
+				new Delete();	
 		}
 		catch(Exception e) 
 		{
 		
 		}
-	}	
+	}
 }
+	

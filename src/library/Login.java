@@ -8,12 +8,17 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 		JButton submit;JTextField inputText;
 		
 	Login(){
-		setSize(800,480);
+		setSize(900,600);
 		setVisible(true);
-		setLocation(340,210);
+		setLocation(340,150);
 		setTitle("Music Library Project");
 		getContentPane().setBackground(Color.BLACK);
 		setLayout(null);
@@ -47,15 +52,21 @@ public class Login extends JFrame implements ActionListener{
 		brws.setFont(new Font("sans-serif",Font.ITALIC,24));
 		brws.setForeground(Color.WHITE);
 		brws.setBounds(200, 60, 300, 300);
+		
+		JLabel dlt = new JLabel("4. Delete Existing Playlist");
+		add(dlt);
+		dlt.setFont(new Font("sans-serif",Font.ITALIC,24));
+		dlt.setForeground(Color.WHITE);
+		dlt.setBounds(200, 60, 300, 360);
 
 		JLabel inp = new JLabel("Your Input:");
 		add(inp);
 		inp.setFont(new Font("sans-serif",Font.BOLD,32));
 		inp.setForeground(Color.WHITE);
-		inp.setBounds(150, 60, 200, 430);
+		inp.setBounds(150, 60, 200, 460);
 		
 		inputText = new JTextField();
-		inputText.setBounds(320, 270, 150, 20);
+		inputText.setBounds(320, 284, 150, 20);
 		add(inputText);
 		
 		submit = new JButton("SUBMIT");
@@ -72,12 +83,18 @@ public class Login extends JFrame implements ActionListener{
 			String choose = ""+ inputText.getText();
 			
 			switch(choose) {
-			case "1" : 	OpenPlaylist obj= new OpenPlaylist();
+			case "1" :  new OpenPlaylist();
 						break;
-			case "2" : 	CreatePlaylist obj1= new CreatePlaylist();
+			case "2" :  new CreatePlaylist();
 						break;
-//			case "3" : BrowsePlaylist obj2 = new BrowsePlaylist();
-//						break;
+			case "3" : 	try {
+						new BrowsePlaylist();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+						break;
+			case "4" : 	new Delete();
+						break;
 				
 			default  : 	JOptionPane.showMessageDialog(null, "Invalid Input");
 						break;
